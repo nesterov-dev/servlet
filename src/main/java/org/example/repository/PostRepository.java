@@ -2,12 +2,14 @@ package org.example.repository;
 
 import org.example.exception.NotFoundException;
 import org.example.model.Post;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
 
+@Repository
 public class PostRepository {
     private final AtomicLong idCounter = new AtomicLong(0);
     private final List<Post> postList = new ArrayList<>();
