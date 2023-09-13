@@ -12,24 +12,20 @@ import java.io.Reader;
 public class PostController {
     public static final String APPLICATION_JSON = "application/json";
     private final PostService service;
-
     public PostController(PostService service) {
         this.service = service;
     }
-
     public void getAllPosts(HttpServletResponse response) throws IOException {
         response.setContentType(APPLICATION_JSON);
         final var data = service.all();
         final var gson = new Gson();
         response.getWriter().print(gson.toJson(data));
     }
-
     public void getById(long id, HttpServletResponse response) throws IOException {
         final var gson = new Gson();
         final var post = service.getById(id);
         response.getWriter().print(gson.toJson(post));
     }
-
     public void save(Reader body, HttpServletResponse response) throws IOException {
         try {
             response.setContentType(APPLICATION_JSON);
@@ -43,7 +39,6 @@ public class PostController {
             response.setStatus(HttpServletResponse.SC_NOT_FOUND);
         }
     }
-
     public void removeById(long id, HttpServletResponse response) throws IOException {
         final var gson = new Gson();
         response.getWriter().print(gson.toJson(service.getById(id)) + "\n Post was deleted!");
